@@ -14,16 +14,15 @@ class DAO():
         results = []
 
         cursor = conn.cursor(dictionary=True)
-        query = "SELECT distinct (order_date) from orders o order by order_date"
+        query = "SELECT * from state"
 
         cursor.execute(query)
 
         for row in cursor:
-            results.append(row["order_date"])
+            #results.append(row["order_date"])
+            continue
 
-        first = results[0]
-        last = results[-1]
 
         cursor.close()
         conn.close()
-        return first, last
+        return None

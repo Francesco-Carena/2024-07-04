@@ -48,7 +48,7 @@ class View(ft.UserControl):
                                               icon=ft.icons.CALENDAR_MONTH,
                                               on_click=lambda _: self._dp2.pick_date())
 
-        self._controller.setDates()
+        #self._controller.setDates()
 
         self._btnCreaGrafo = ft.ElevatedButton(text="Crea Grafo", on_click=self._controller.handleCreaGrafo)
 
