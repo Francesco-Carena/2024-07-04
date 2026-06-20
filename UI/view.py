@@ -26,49 +26,22 @@ class View(ft.UserControl):
         self._title = ft.Text("Esame del 10/07/2025 - Turno A", color="green", size=24)
         self._page.controls.append(self._title)
 
-        self._ddcategory = ft.Dropdown(label="Category", width=200)
-        self._controller.fillDDCategory()
+        self._ddyears = ft.Dropdown(label="Anni", width=200, on_change=self._controller.fillDDShapes)
+        self._controller.fillDDYears()
+        self._ddshapes = ft.Dropdown(label="Forme", width=200)
 
-        self._dp1 = ft.DatePicker(
-            on_change=lambda e: print(f"Giorno selezionato: {self._dp1.value}"),
-            on_dismiss=lambda e: print("Data non selezionata")
-        )
-
-        self._page.overlay.append(self._dp1)
-        self._btnCal1 = ft.ElevatedButton("Start date",
-                                              icon=ft.icons.CALENDAR_MONTH,
-                                              on_click=lambda _: self._dp1.pick_date())
-
-        self._dp2 = ft.DatePicker(
-            on_change=lambda e: print(f"Giorno selezionato: {self._dp2.value}"),
-            on_dismiss=lambda e: print("Data non selezionata")
-        )
-        self._page.overlay.append(self._dp2)
-        self._btnCal2 = ft.ElevatedButton("End date",
-                                              icon=ft.icons.CALENDAR_MONTH,
-                                              on_click=lambda _: self._dp2.pick_date())
-
-        #self._controller.setDates()
 
         self._btnCreaGrafo = ft.ElevatedButton(text="Crea Grafo", on_click=self._controller.handleCreaGrafo)
+        self._btnPath = ft.ElevatedButton(text="Cerca percorso", on_click=self._controller.handlePath)
 
-        self._btnBestProdotti = ft.ElevatedButton(text="Prodotti più venduti",
-                                           on_click=self._controller.handleBestProdotti)
 
-        row1 = ft.Row([self._ddcategory, self._btnCal1, self._btnCal2, self._btnCreaGrafo, self._btnBestProdotti],
+        row1 = ft.Row([self._ddyears, self._ddshapes, self._btnCreaGrafo, self._btnPath],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
 
-        self._txtInLun = ft.TextField(label="Lunghezza cammino", width=120)
-        self._ddProdStart = ft.Dropdown(label="Start product", width=350)
-        self._ddProdEnd = ft.Dropdown(label="End product", width=350)
-
-        self._btnCercaCammino = ft.ElevatedButton(text="Cerca ",
-                                                  on_click=self._controller.handleCercaCammino, width=120)
-
-        row2 = ft.Row([self._txtInLun, self._ddProdStart, self._ddProdEnd, self._btnCercaCammino],
+        """row2 = ft.Row([self._txtInLun, self._ddProdStart, self._ddProdEnd, self._btnCercaCammino],
                       alignment=ft.MainAxisAlignment.CENTER)
-        self._page.controls.append(row2)
+        self._page.controls.append(row2)"""
 
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=False)
         self._page.controls.append(self.txt_result)
